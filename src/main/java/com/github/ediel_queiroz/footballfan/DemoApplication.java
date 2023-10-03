@@ -1,4 +1,4 @@
-package com.github.ediel_queiroz.footballfan.footballfan;
+package com.github.ediel_queiroz.footballfan;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
