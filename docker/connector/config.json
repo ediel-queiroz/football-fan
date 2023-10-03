@@ -1,0 +1,12 @@
+{
+  "name": "http-source",
+  "config": {
+    "connector.class": "com.github.castorm.kafka.connect.http.HttpSourceConnector",
+    "http.request.url": "https://livescore6.p.rapidapi.com/matches/v2/list-live",
+    "http.request.headers": "Accept: application/json, X-RapidAPI-Key: 999999",
+    "http.response.list.pointer": "/Stages",
+    "http.response.record.offset.pointer": "key=/Sid",
+    "kafka.topic": "live-results",
+    "http.timer.interval.millis": "60000"
+  }
+}
