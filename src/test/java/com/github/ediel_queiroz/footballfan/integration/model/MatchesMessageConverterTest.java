@@ -1,8 +1,8 @@
 package com.github.ediel_queiroz.footballfan.integration.model;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.ediel_queiroz.footballfan.JsonConfiguration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +15,7 @@ public class MatchesMessageConverterTest {
 
     @BeforeAll
     public static void setup() {
-        MAPPER = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        MAPPER = new JsonConfiguration().objectMapper();
     }
 
     @Test
