@@ -32,7 +32,7 @@ public class MatchesMessageConverterTest {
 
         // assert
         assertThat(matchesMessage).extracting("countryName", "leagueName", "isCup").containsExactly("Italy", "Serie C: Group B", false);
-        assertThat(matchesMessage.matches()).hasSize(1).containsExactly(new MatchesMessage.Match("1046668", "1", "0", "20231113003000", "51"));
+        assertThat(matchesMessage.matchMessages()).hasSize(1).containsExactly(new MatchesMessage.MatchMessage("1046668", "1", "0", "20231113003000", "51"));
     }
 
     private String samplePayload() {

@@ -29,7 +29,7 @@ public class LiveScoreListener {
         LOGGER.info("Receiving live results with key " + key);
         try {
             MatchesMessage matches = objectMapper.readValue(matchesRecord.value(), MatchesMessage.class);
-            matches.matches().forEach(m -> matchService.add(m.toMatch(matches.countryName(), matches.leagueName())));
+            matches.matchMessages().forEach(m -> matchService.add(m.toMatch(matches.countryName(), matches.leagueName())));
         } catch (JsonProcessingException e) {
             throw new SerializationException("It is not possible to deserialize value with key [ " + key + "] ");
         }
