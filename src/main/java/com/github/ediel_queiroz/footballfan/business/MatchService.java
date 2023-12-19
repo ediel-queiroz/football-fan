@@ -1,8 +1,11 @@
 package com.github.ediel_queiroz.footballfan.business;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class MatchService {
 
-    private SimpleCacheManager<String, Match> cacheManager;
+    private final SimpleCacheManager<String, Match> cacheManager;
 
     public MatchService(final SimpleCacheManager<String, Match> cacheManager) {
         this.cacheManager = cacheManager;
