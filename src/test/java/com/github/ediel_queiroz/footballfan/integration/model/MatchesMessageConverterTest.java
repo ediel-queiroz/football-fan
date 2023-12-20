@@ -38,8 +38,8 @@ public class MatchesMessageConverterTest {
         MatchesMessage matchesMessage = MAPPER.readValue(samplePayload(), MatchesMessage.class);
 
         // assert
-        assertThat(matchesMessage).extracting("countryName", "leagueName", "isCup").containsExactly("Italy", "Serie C: Group B", false);
-        assertThat(matchesMessage.matchMessages()).hasSize(1).containsExactly(new MatchesMessage.MatchMessage("1046668", "1", "0", "20231113003000", "51"));
+        assertThat(matchesMessage).extracting("countryName", "leagueName", "isCup").containsExactly("Iran", "Azadegan League", false);
+        assertThat(matchesMessage.matchMessages()).hasSize(1).containsExactly(new MatchesMessage.MatchMessage("1107695", "2", "0", "20231220173000", "47'"));
     }
 
     @Test
@@ -52,162 +52,11 @@ public class MatchesMessageConverterTest {
         List<Match> matches = matchesMessage.toMatchList();
 
         // assert
-        assertThat(matches).extracting("id", "homeTeamScore", "awayTeamScore", "matchStartDate", "matchStatus", "country", "leagueName").containsExactly(Tuple.tuple("1046668", "1", "0", "20231113003000", "51", "Italy", "Serie C: Group B"));
+        assertThat(matches).extracting("id", "homeTeamScore", "awayTeamScore", "matchStartDate", "matchStatus", "country", "leagueName").containsExactly(Tuple.tuple("1107695", "2", "0", "20231220173000", "47'", "Iran", "Azadegan League"));
 
     }
 
     private String samplePayload() {
-        return """
-                {
-                    "Sid": "15242",
-                    "Snm": "Serie C: Group B",
-                    "Scd": "serie-c-group-b",
-                    "badgeUrl": "2023-italy-serie-c.png",
-                    "firstColor": "1F3860",
-                    "Cid": "50",
-                    "Cnm": "Italy",
-                    "Csnm": "Italy",
-                    "Ccd": "italy",
-                    "CompId": "199",
-                    "CompN": "Serie C: Group B",
-                    "CompD": "Italy",
-                    "CompST": "Italy",
-                    "Scu": 0,
-                    "Sds": "Serie C: Group B",
-                    "Chi": 0,
-                    "Shi": 0,
-                    "Ccdiso": "ITA",
-                    "Sdn": "Serie C: Group B",
-                    "Events": [
-                        {
-                            "Eid": "1046668",
-                            "Pids": {
-                                "8": "1046668",
-                                "1": "4288944",
-                                "12": "SBTE_29649263",
-                                "6": "42819895",
-                                "32": "2853658"
-                            },
-                            "Sids": {
-                                "8": "15242",
-                                "1": "886492",
-                                "12": "SBTC3_59599",
-                                "6": "76983",
-                                "32": "20870"
-                            },
-                            "Tr1": "1",
-                            "Tr2": "0",
-                            "Trh1": "1",
-                            "Trh2": "0",
-                            "Tr1OR": "1",
-                            "Tr2OR": "0",
-                            "T1": [
-                                {
-                                    "Nm": "Sestri Levante",
-                                    "ID": "12061",
-                                    "Img": "enet/583893.png",
-                                    "Abr": "SES",
-                                    "tbd": 0,
-                                    "Gd": 1,
-                                    "Pids": {
-                                        "12": [
-                                            "SBTP_232277"
-                                        ],
-                                        "1": [
-                                            "583893"
-                                        ],
-                                        "6": [
-                                            "117250"
-                                        ],
-                                        "8": [
-                                            "12061"
-                                        ],
-                                        "32": [
-                                            "4712"
-                                        ]
-                                    },
-                                    "CoNm": "Italy",
-                                    "CoId": "ITA",
-                                    "HasVideo": false
-                                }
-                            ],
-                            "T2": [
-                                {
-                                    "Nm": "Fermana",
-                                    "ID": "4289",
-                                    "Img": "enet/6476.png",
-                                    "Abr": "FER",
-                                    "tbd": 0,
-                                    "Gd": 1,
-                                    "Pids": {
-                                        "12": [
-                                            "SBTP_1132"
-                                        ],
-                                        "1": [
-                                            "6476"
-                                        ],
-                                        "6": [
-                                            "2755"
-                                        ],
-                                        "8": [
-                                            "4289"
-                                        ],
-                                        "32": [
-                                            "769"
-                                        ]
-                                    },
-                                    "CoNm": "Italy",
-                                    "CoId": "ITA",
-                                    "HasVideo": false
-                                }
-                            ],
-                            "Eps": "51",
-                            "Esid": 3,
-                            "Epr": 1,
-                            "Ecov": 0,
-                            "Ern": 13,
-                            "ErnInf": "13",
-                            "Et": 1,
-                            "Esd": 20231113003000,
-                            "Eact": 1,
-                            "EO": 806895983,
-                            "EOX": 806895983,
-                            "IncsX": 1,
-                            "ComX": 0,
-                            "LuX": 1,
-                            "StatX": 1,
-                            "SubsX": 0,
-                            "SDFowX": 0,
-                            "SDInnX": 0,
-                            "LuC": 1,
-                            "Ehid": 0,
-                            "Spid": 1,
-                            "Stg": {
-                                "Sid": "15242",
-                                "Snm": "Serie C: Group B",
-                                "Scd": "serie-c-group-b",
-                                "badgeUrl": "2023-italy-serie-c.png",
-                                "firstColor": "1F3860",
-                                "Cid": "50",
-                                "Cnm": "Italy",
-                                "Csnm": "Italy",
-                                "Ccd": "italy",
-                                "CompId": "199",
-                                "CompN": "Serie C: Group B",
-                                "CompD": "Italy",
-                                "CompST": "Italy",
-                                "Scu": 0,
-                                "Sds": "Serie C: Group B",
-                                "Chi": 0,
-                                "Shi": 0,
-                                "Ccdiso": "ITA",
-                                "Sdn": "Serie C: Group B"
-                            },
-                            "Pid": 8
-                        }
-                    ]
-                }
-                """;
+        return "{\"Sid\":\"15376\",\"Snm\":\"Azadegan League\",\"Scd\":\"azadegan-league\",\"Cid\":\"31\",\"Cnm\":\"Iran\",\"Csnm\":\"Iran\",\"Ccd\":\"iran\",\"Scu\":0,\"Sds\":\"Azadegan League\",\"Chi\":0,\"Shi\":0,\"Ccdiso\":\"IRN\",\"Sdn\":\"Azadegan League\",\"Events\":[{\"Eid\":\"1107695\",\"Pids\":{\"8\":\"1107695\",\"1\":\"4352212\",\"6\":\"46061583\",\"32\":\"2867653\"},\"Sids\":{\"8\":\"15376\",\"1\":\"887258\",\"12\":\"SBTC3_59558\",\"6\":\"78309\",\"32\":\"21030\"},\"Tr1\":\"2\",\"Tr2\":\"0\",\"Trh1\":\"2\",\"Trh2\":\"0\",\"Tr1OR\":\"2\",\"Tr2OR\":\"0\",\"T1\":[{\"Nm\":\"Fajr Sepasi\",\"ID\":\"4356\",\"Img\":\"enet/101623.png\",\"Abr\":\"FAJ\",\"tbd\":0,\"Gd\":1,\"Pids\":{\"12\":[\"SBTP_22499\"],\"1\":[\"101623\"],\"6\":[\"53717\"],\"8\":[\"4356\"],\"32\":[\"2014\"]},\"CoNm\":\"Iran\",\"CoId\":\"IRN\",\"HasVideo\":false}],\"T2\":[{\"Nm\":\"Pars Jonoubi Jam Bushehr\",\"ID\":\"5046\",\"Img\":\"enet/775750.png\",\"Abr\":\"PAR\",\"tbd\":0,\"Gd\":1,\"Pids\":{\"12\":[\"SBTP_389560\"],\"1\":[\"775750\"],\"6\":[\"295810\"],\"8\":[\"5046\"],\"32\":[\"7435\"]},\"CoNm\":\"Iran\",\"CoId\":\"IRN\",\"HasVideo\":false}],\"Eps\":\"47'\",\"Esid\":3,\"Epr\":1,\"Ecov\":0,\"Ern\":17,\"ErnInf\":\"17\",\"Et\":1,\"Esd\":20231220173000,\"Eact\":1,\"EO\":807141391,\"EOX\":807141391,\"IncsX\":1,\"ComX\":0,\"LuX\":0,\"StatX\":0,\"SubsX\":0,\"SDFowX\":0,\"SDInnX\":0,\"LuC\":0,\"Ehid\":0,\"Spid\":1,\"Stg\":{\"Sid\":\"15376\",\"Snm\":\"Azadegan League\",\"Scd\":\"azadegan-league\",\"Cid\":\"31\",\"Cnm\":\"Iran\",\"Csnm\":\"Iran\",\"Ccd\":\"iran\",\"Scu\":0,\"Sds\":\"Azadegan League\",\"Chi\":0,\"Shi\":0,\"Ccdiso\":\"IRN\",\"Sdn\":\"Azadegan League\"},\"Pid\":8}]}";
     }
-
 }

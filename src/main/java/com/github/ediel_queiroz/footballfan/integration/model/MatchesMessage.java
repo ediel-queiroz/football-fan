@@ -9,7 +9,7 @@ public record MatchesMessage(@JsonProperty("Cnm") String countryName, @JsonPrope
                              @JsonProperty("Scu") boolean isCup,
                              @JsonProperty("Events") List<MatchMessage> matchMessages) {
     public List<Match> toMatchList() {
-        return matchMessages.stream().map(m -> m.toMatch(countryName, leagueName)).toList();
+        return this.matchMessages.stream().map(m -> m.toMatch(countryName, leagueName)).toList();
     }
 
     public record MatchMessage(@JsonProperty("Eid") String matchId, @JsonProperty("Tr1") String homeTeamScore,
