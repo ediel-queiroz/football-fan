@@ -3,8 +3,13 @@ package com.github.ediel_queiroz.footballfan.integration.model;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.ediel_queiroz.footballfan.JsonConfiguration;
+import com.github.ediel_queiroz.footballfan.business.Match;
+import org.assertj.core.groups.Tuple;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
@@ -19,6 +24,7 @@ public class MatchesMessageConverterTest {
     }
 
     @Test
+    @DisplayName("Should not throw exception when there are unknown fields")
     public void shouldNotThrowExceptionDueToUnknownFields() {
         assertThatNoException().isThrownBy(() -> {
             MAPPER.readValue(samplePayload(), MatchesMessage.class);
@@ -26,6 +32,7 @@ public class MatchesMessageConverterTest {
     }
 
     @Test
+    @DisplayName("Should deserialize json into MatchesMessage")
     public void shouldDeserializeJsonIntoMatchesMessage() throws JsonProcessingException {
         // act
         MatchesMessage matchesMessage = MAPPER.readValue(samplePayload(), MatchesMessage.class);
@@ -33,6 +40,20 @@ public class MatchesMessageConverterTest {
         // assert
         assertThat(matchesMessage).extracting("countryName", "leagueName", "isCup").containsExactly("Italy", "Serie C: Group B", false);
         assertThat(matchesMessage.matchMessages()).hasSize(1).containsExactly(new MatchesMessage.MatchMessage("1046668", "1", "0", "20231113003000", "51"));
+    }
+
+    @Test
+    @DisplayName("Should convert matches message to a list of Matches")
+    public void shouldConvertMatchesMessageToListOfMatch() throws JsonProcessingException {
+        // arrange
+        MatchesMessage matchesMessage = MAPPER.readValue(samplePayload(), MatchesMessage.class);
+
+        // act
+        List<Match> matches = matchesMessage.toMatchList();
+
+        // assert
+        assertThat(matches).extracting("id", "homeTeamScore", "awayTeamScore", "matchStartDate", "matchStatus", "country", "leagueName").containsExactly(Tuple.tuple("1046668", "1", "0", "20231113003000", "51", "Italy", "Serie C: Group B"));
+
     }
 
     private String samplePayload() {
