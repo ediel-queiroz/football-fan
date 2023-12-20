@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -100,6 +101,27 @@ public class CacheManagerTest {
     public void shouldReturnNullWhenKeyIsNull() {
         Match match = cacheManager.get(null);
         assertThat(match).isNull();
+    }
+
+    @Test
+    @DisplayName("Should return all objects from cache")
+    public void shouldReturnAllCacheObjects() {
+        final Match match1 = sampleMatch();
+        final Match match2 = sampleMatch();
+        cacheManager.put(match1.id(), match1);
+        cacheManager.put(match2.id(), match2);
+
+        List<Match> matches = cacheManager.listValues();
+
+        assertThat(matches).containsExactly(match1, match2);
+    }
+
+    @Test
+    @DisplayName("Should return no objects from cache")
+    public void shouldReturnNoObjectsFromCache() {
+        List<Match> matches = cacheManager.listValues();
+
+        assertThat(matches).isEmpty();
     }
 
     private Match sampleMatch() {

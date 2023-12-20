@@ -1,9 +1,10 @@
 package com.github.ediel_queiroz.footballfan.business;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class SimpleCacheManager<K,V> {
+public class SimpleCacheManager<K, V> {
 
     private final Map<K, V> cacheMap;
 
@@ -19,5 +20,9 @@ public class SimpleCacheManager<K,V> {
 
     public V get(K id) {
         return cacheMap.get(id);
+    }
+
+    public List<V> listValues() {
+        return cacheMap.values().stream().toList();
     }
 }
