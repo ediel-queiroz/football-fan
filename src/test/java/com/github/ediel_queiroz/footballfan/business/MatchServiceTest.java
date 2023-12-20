@@ -10,6 +10,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.List;
+
 @ExtendWith(MockitoExtension.class)
 public class MatchServiceTest {
 
@@ -39,6 +41,19 @@ public class MatchServiceTest {
 
         Mockito.verify(cacheManager, Mockito.times(1)).get(match.id());
         Assertions.assertThat(returned).isEqualTo(match);
+    }
+
+    @Test
+    @DisplayName("Should list all matches")
+    public void shouldListAllMatches() {
+        var match1 = sampleMatch();
+        var match2 = sampleMatch();
+        Mockito.when(cacheManager.listValues()).thenReturn(List.of(match1, match2));
+
+        List<Match> matches = service.listAll();
+
+        Mockito.verify(cacheManager, Mockito.times(1)).listValues();
+        Assertions.assertThat(matches).containsExactly(match1, match2);
     }
 
     private Match sampleMatch() {

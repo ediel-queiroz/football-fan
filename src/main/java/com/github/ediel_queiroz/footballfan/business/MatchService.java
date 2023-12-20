@@ -2,6 +2,8 @@ package com.github.ediel_queiroz.footballfan.business;
 
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MatchService {
 
@@ -17,5 +19,9 @@ public class MatchService {
 
     public Match get(String id) {
         return cacheManager.get(id);
+    }
+
+    public List<Match> listAll() {
+        return cacheManager.listValues();
     }
 }
