@@ -39,7 +39,7 @@ public class MatchesMessageConverterTest {
 
         // assert
         assertThat(matchesMessage).extracting("countryName", "leagueName", "isCup").containsExactly("Iran", "Azadegan League", false);
-        assertThat(matchesMessage.matchMessages()).hasSize(1).containsExactly(new MatchesMessage.MatchMessage("1107695", "2", "0", "20231220173000", "47'"));
+        assertThat(matchesMessage.matchMessages()).hasSize(1).containsExactly(new MatchMessage("1107695", "2", "0", "20231220173000", "47'"));
     }
 
     @Test

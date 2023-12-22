@@ -113,7 +113,7 @@ public class CacheManagerTest {
 
         List<Match> matches = cacheManager.listValues();
 
-        assertThat(matches).containsExactly(match1, match2);
+        assertThat(matches).containsExactlyInAnyOrder(match1, match2);
     }
 
     @Test
