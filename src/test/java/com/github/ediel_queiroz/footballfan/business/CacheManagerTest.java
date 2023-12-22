@@ -125,7 +125,7 @@ public class CacheManagerTest {
     }
 
     private Match sampleMatch() {
-        return new Match(faker.number().digits(7), String.valueOf(faker.number().numberBetween(0, 10)), String.valueOf(faker.number().numberBetween(0, 10)), "20231210003000", String.valueOf(faker.number().numberBetween(0, 90)), faker.country().name(), faker.esports().league());
+        return new Match(faker.number().digits(7), faker.esports().team(), faker.esports().team() ,String.valueOf(faker.number().numberBetween(0, 10)), String.valueOf(faker.number().numberBetween(0, 10)), "20231210003000", String.valueOf(faker.number().numberBetween(0, 90)), faker.country().name(), faker.esports().league());
     }
 
 }

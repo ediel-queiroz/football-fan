@@ -38,8 +38,10 @@ public class MatchesMessageConverterTest {
         MatchesMessage matchesMessage = MAPPER.readValue(samplePayload(), MatchesMessage.class);
 
         // assert
+        TeamMessage homeTeamMessage = new TeamMessage("Fajr Sepasi");
+        TeamMessage awayTeamMessage = new TeamMessage("Pars Jonoubi Jam Bushehr");
         assertThat(matchesMessage).extracting("countryName", "leagueName", "isCup").containsExactly("Iran", "Azadegan League", false);
-        assertThat(matchesMessage.matchMessages()).hasSize(1).containsExactly(new MatchMessage("1107695", "2", "0", "20231220173000", "47'"));
+        assertThat(matchesMessage.matchMessages()).hasSize(1).containsExactly(new MatchMessage("1107695", "2", "0", "20231220173000", "47'", List.of(homeTeamMessage), List.of(awayTeamMessage)));
     }
 
     @Test
@@ -52,7 +54,7 @@ public class MatchesMessageConverterTest {
         List<Match> matches = matchesMessage.toMatchList();
 
         // assert
-        assertThat(matches).extracting("id", "homeTeamScore", "awayTeamScore", "matchStartDate", "matchStatus", "country", "leagueName").containsExactly(Tuple.tuple("1107695", "2", "0", "20231220173000", "47'", "Iran", "Azadegan League"));
+        assertThat(matches).extracting("id", "homeTeamName", "awayTeamName", "homeTeamScore", "awayTeamScore", "matchStartDate", "matchStatus", "country", "leagueName").containsExactly(Tuple.tuple("1107695", "Fajr Sepasi", "Pars Jonoubi Jam Bushehr", "2", "0", "20231220173000", "47'", "Iran", "Azadegan League"));
 
     }
 
