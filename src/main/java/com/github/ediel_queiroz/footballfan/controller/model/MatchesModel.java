@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-record MatchesModel(List<CountryModel> countries) {
-    static MatchesModel from(List<Match> matches) {
+public record MatchesModel(List<CountryModel> countries) {
+    public static MatchesModel from(List<Match> matches) {
         final var groupedMatches = matches.stream().collect(Collectors.groupingBy(Match::country, Collectors.groupingBy(Match::leagueName)));
         final List<CountryModel> countriesModel = new ArrayList<>();
 
