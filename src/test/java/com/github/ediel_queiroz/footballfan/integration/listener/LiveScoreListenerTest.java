@@ -9,11 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.test.context.EmbeddedKafka;
+import org.springframework.test.annotation.DirtiesContext;
 
 import java.time.Duration;
 
 @SpringBootTest
-@EmbeddedKafka(ports = 9092, partitions = 1, topics = "live-results")
+@EmbeddedKafka(ports = 9092, partitions = 1, topics = "live-results", kraft = false)
+@DirtiesContext
 public class LiveScoreListenerTest {
 
     @Autowired

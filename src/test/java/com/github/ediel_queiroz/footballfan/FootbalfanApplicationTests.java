@@ -10,12 +10,14 @@ import org.springframework.boot.test.system.CapturedOutput;
 import org.springframework.boot.test.system.OutputCaptureExtension;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.test.context.EmbeddedKafka;
+import org.springframework.test.annotation.DirtiesContext;
 
 import java.time.Duration;
 
 @SpringBootTest
-@EmbeddedKafka(ports = 9092, partitions = 1, topics = "live-results")
+@EmbeddedKafka(ports = 9092, partitions = 1, topics = "live-results", kraft = false)
 @ExtendWith(OutputCaptureExtension.class)
+@DirtiesContext
 class FootbalfanApplicationTests {
 
     @Autowired
